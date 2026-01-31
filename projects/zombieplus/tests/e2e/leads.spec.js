@@ -1,10 +1,15 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
-const { LadingPage } = require('./pages/LandingPage');
+
+const { LandingPage } = require('../pages/LandingPage');
+
+let landingPage
+
+test.beforeEach(async ({page}) => {
+  landingPage = new LandingPage(page)
+})
 
 test('Validar cadastro de lead na fila de espera', async ({ page }) => { 
-  const landingPage = new LadingPage(page)
-
   await landingPage.visit()
   await landingPage.openLeadModal()     
   await landingPage.submitLeadForm('Leonardo', 'leoteste@gmail.com')
@@ -14,8 +19,6 @@ test('Validar cadastro de lead na fila de espera', async ({ page }) => {
 });  
 
 test('Validar tentativa de cadastro com email invalido', async ({ page }) => {
-  const landingPage = new LadingPage(page)
-
   await landingPage.visit()
   await landingPage.openLeadModal()     
   await landingPage.submitLeadForm('Leonardo', 'leoteste.gmail.com')
@@ -25,8 +28,6 @@ test('Validar tentativa de cadastro com email invalido', async ({ page }) => {
 });
 
 test('Validar tentativa de cadastro com os campos vazios', async ({ page }) => {
-    const landingPage = new LadingPage(page)
-
   await landingPage.visit()
   await landingPage.openLeadModal()     
   await landingPage.submitLeadForm('', '')
@@ -39,8 +40,6 @@ test('Validar tentativa de cadastro com os campos vazios', async ({ page }) => {
 });
 
 test('Validar tentativa de cadastro com o campo Nome vazio', async ({ page }) => {
-    const landingPage = new LadingPage(page)
-
   await landingPage.visit()
   await landingPage.openLeadModal()     
   await landingPage.submitLeadForm('', 'leoteste@gmail.com')
@@ -50,8 +49,6 @@ test('Validar tentativa de cadastro com o campo Nome vazio', async ({ page }) =>
 });
 
 test('Validar tentativa de cadastro com o campo Email vazio', async ({ page }) => {
-    const landingPage = new LadingPage(page)
-
   await landingPage.visit()
   await landingPage.openLeadModal()     
   await landingPage.submitLeadForm('Leonardo', '')

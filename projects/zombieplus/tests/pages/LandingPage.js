@@ -1,6 +1,6 @@
 
 const { expect } = require('@playwright/test');
-export class LadingPage {
+export class LandingPage {
 
 
     constructor(page) { 
@@ -35,7 +35,7 @@ export class LadingPage {
         const toast = this.page.locator('.toast')
         
         await expect(toast).toHaveText(message)
-        await expect(toast).toBeHidden({timeout: 5000})
+        await expect(toast).not.toBeVisible({timeout: 5000}) // o not garante que não esta visivel porem pertence ao html
     }
 
     async alertHaveText(target) {

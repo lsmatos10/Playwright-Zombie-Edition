@@ -11,6 +11,8 @@ test.beforeEach(({ page }) => {
 
 test('Validar login como administrador', async ({ page }) => {
     await loginPage.visit()
+    await loginPage.submit('admin@zombieplus.com', 'pwd123')
+    await loginPage.isLoggedIn()
 
 
 })
